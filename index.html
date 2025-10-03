@@ -1,738 +1,468 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Juliana Castro | Genera Ingresos Online</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transforma tus Finanzas Online | Mentoría</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Poppins Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
-        /* Variables y configuración general */
+        /* Configuración de Tailwind y fuente Poppins */
         :root {
-            --accent: #ff6b6b; /* Coral vivo */
-            --secondary: #4ecdc4; /* Turquesa */
-            --highlight: #ffe66d; /* Amarillo brillante */
-            --bg: #fdfdfd;
-            --card: #ffffff;
-            --muted: #6c757d;
-        }
-
-        * {
-            box-sizing: border-box
-        }
-
-        body {
-            margin: 0;
-            font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-            background: linear-gradient(180deg, #fff, #f8f9fc);
-            color: #212529;
-            line-height: 1.5;
-            /* Añadir padding para compensar el header fijo */
-            padding-top: 70px; 
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 20px
-        }
-
-        /* Header y Navegación */
-        header {
-            /* Hacemos el header fijo */
-            position: fixed; 
-            top: 0;
-            left: 0;
-            width: 100%;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            align-items: center;
-            padding: 8px 20px;
-            background: rgba(255, 255, 255, 0.95); /* Fondo blanco semitransparente */
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            z-index: 1000; /* Asegurar que esté por encima de otros elementos */
+            --primary-color: #4f46e5; /* Indigo-600 */
+            --accent-color: #10b981; /* Emerald-500 */
+            --dark-bg: #111827; /* Gray-900 */
+            --light-text: #f9fafb; /* Gray-50 */
         }
         
-        .logo {
-            font-weight: 700;
-            font-size: 20px;
-            display: flex;
-            gap: 10px;
-            align-items: center;
-            color: var(--accent)
+        body {
+            /* Dejamos un margen para el navbar fijo, pero lo restamos del padding total de las secciones */
+            margin-top: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light-text);
+        }
+
+        /* Estilo para el Navbar fijo */
+        .navbar-sticky {
+            z-index: 1000;
+        }
+
+        /* Estilo para la sección de videos verticales */
+        .vertical-videos {
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch; /* Habilitar scroll suave en iOS */
+        }
+
+        .video-card {
+            scroll-snap-align: center;
+            flex: 0 0 90%; /* Ancho de la tarjeta en móvil */
+        }
+
+        @media (min-width: 640px) {
+            .video-card {
+                flex: 0 0 30%; /* Ancho de la tarjeta en escritorio/tablet */
+            }
+        }
+
+        /* Estilo para el carrusel de testimonios */
+        .testimonial-carousel {
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .testimonial-card {
+            scroll-snap-align: center;
+            flex: 0 0 90%; /* Ancho de la tarjeta en móvil */
+        }
+
+        @media (min-width: 768px) {
+            .testimonial-card {
+                flex: 0 0 45%; /* Ancho de la tarjeta en tablet */
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .testimonial-card {
+                flex: 0 0 30%; /* Ancho de la tarjeta en desktop */
+            }
+        }
+
+        /* Estilo para el botón de WhatsApp animado */
+        .whatsapp-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
         }
         
         .logo-img {
-            height: 40px;
+            height: 70px;
             border-radius: 6px;
             object-fit: cover;
         }
-
-        nav {
-            display: flex;
-            gap: 20px;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #212529;
-            font-weight: 600;
-            padding: 10px 0;
-        }
-
-        nav a:hover {
-            color: var(--accent)
-        }
-
-        .hamburger {
-            display: none;
-            font-size: 24px;
-            cursor: pointer;
-            color: var(--accent)
-        }
-
-        section {
-            padding: 60px 20px;
-        }
         
-
-        .hero {
-            position: relative;
-            border-radius: 14px;
-            overflow: hidden;
-            margin: 18px 0;
-            display: grid;
-            grid-template-columns: 1fr 420px;
-            gap: 24px;
-            align-items: center;
-            padding: 24px;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--secondary) 100%);
-            color: var(--accent)
-        }
-
-        .hero-video {
-            position: absolute;
-            inset: 0;
-            z-index: 0
-        }
-
-        .hero-video video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: brightness(0.3)
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            padding: 10px
-        }
-
-        p.lead {
-            margin: 0 0 18px;
-            color: #f1f1f1
-        }
-
-        .cta {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px
-        }
-
-        .btn {
-            background: var(--highlight);
-            color: #212529;
-            padding: 12px 18px;
-            border-radius: 10px;
-            border: 0;
-            cursor: pointer;
-            font-weight: 700;
-            transition: background .3s;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn:hover {
-            background: #ffd43b
-        }
-
-        .btn.ghost {
-            background: transparent;
-            border: 2px solid #fff;
-            color: #fff;
-            box-shadow: none;
-        }
-
-        .card {
-            background: var(--card);
-            border-radius: 12px;
-            padding: 18px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08)
-        }
-
-        .modules {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 12px;
-            margin-top: 16px
-        }
-
-        .module {
-            padding: 12px;
-            border-radius: 8px;
-            background: linear-gradient(180deg, #fff, #fdfdfd);
-            border: 1px solid #eee;
-            text-align: center;
-            transition: transform .3s;
-        }
-
-        .module:hover {
-            transform: translateY(-4px)
-        }
-
-        .grid2 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 18px;
-            margin-top: 24px
-        }
-
-        /* Carrusel de Imágenes */
-        .carousel {
-            position: relative;
-            overflow: hidden;
-            border-radius: 10px;
-        }
-
-        .carousel img {
-            border-radius: 12px;
-            scroll-snap-align: center;
-        }
-
-        .carousel-track {
-            display: flex;
-            transition: transform .5s ease
-        }
-
-        .carousel-item {
-            min-width: 100%;
-            padding: 12px
-        }
-
-        .dots {
-            display: flex;
-            gap: 8px;
-            justify-content: center;
-            margin-top: 12px
-        }
-
-        .dot {
-            width: 9px;
-            height: 9px;
-            border-radius: 50%;
-            background: #ddd;
-            cursor: pointer
-        }
-
-        .dot.active {
-            background: var(--accent)
-        }
-
-        /* Estilos de Formulario y Footer */
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 10px
-        }
-
-        input,
-        textarea,
-        select {
-            padding: 10px;
-            border-radius: 8px;
-            border: 1px solid #e6eef8
-        }
-
-        .small {
-            font-size: 13px;
-            color: var(--muted)
-        }
-
-        footer {
-            background: #f1f1f1;
-            padding: 20px;
-            text-align: center;
-            font-size: .9rem;
-            color: var(--muted);
-            margin-top: 40px;
-        }
-
-        .testimonials {
-            display: flex;
-            flex-direction: column;
-            gap: 12px
-        }
-
-        .testimonial {
-            background: #fff;
-            padding: 14px;
-            border-radius: 10px;
-            border-left: 4px solid var(--secondary);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        }
-
-        /* Animaciones */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(12px);
-            animation: fadeIn .8s forwards
-        }
-
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-                transform: none
+        @keyframes pulse-slow {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
             }
         }
-
-        /* Estilos para el nuevo carrusel de videos verticales */
-        .vertical-videos-container {
-            padding: 18px;
-            margin-top: 18px;
-            text-align: center;
+        .animate-pulse-slow {
+            animation: pulse-slow 4s infinite ease-in-out;
         }
 
-        .video-carousel-wrapper {
-            position: relative;
-            max-width: 300px; /* Ancho típico de video vertical */
-            height: 533px; /* Proporción 9:16 para el contenedor */
-            margin: 16px auto 0;
-            overflow: hidden;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .video-track {
-            display: flex;
-            height: 100%;
-            transition: transform 0.4s ease-in-out;
-        }
-
-        .vertical-video-item {
-            min-width: 100%;
-            height: 100%;
-            flex-shrink: 0;
-            cursor: pointer;
-        }
-
-        .vertical-video-item video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .nav-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.5);
-            color: #fff;
-            border: none;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            cursor: pointer;
-            font-size: 16px;
-            z-index: 10;
-            transition: background 0.3s, opacity 0.3s;
-            opacity: 0.8;
-        }
-
-        .nav-btn:hover {
-            background: var(--accent);
-            opacity: 1;
-        }
-
-        .prev-btn {
-            left: 10px;
-        }
-
-        .next-btn {
-            right: 10px;
-        }
-
-        .video-play-indicator {
-            position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.6);
-            color: #fff;
-            padding: 6px 12px;
-            border-radius: 8px;
-            font-size: 12px;
-            transition: opacity 0.3s;
-        }
-
-        .playing {
-            opacity: 0;
-        }
-
-        /* Media Queries (Responsive Design) */
-        @media(max-width:920px) {
-            .hero {
-                grid-template-columns: 1fr
-            }
-
-            .hero aside {
-                min-width: unset;
-                width: 100%;
-                margin-top: 16px;
-            }
-
-            .vertical-videos-container {
-                padding: 12px;
-            }
-
-            .video-carousel-wrapper {
-                max-width: 250px;
-                height: 444px; /* Proporción 9:16 */
-            }
-        }
-
-        @media(max-width:768px) {
-            body {
-                padding-top: 60px; 
-            }
-            header {
-                padding: 8px 10px;
-            }
-
-            nav {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 56px; /* Ajustar basado en la altura del header */
-                right: 20px;
-                background: #fff;
-                border-radius: 8px;
-                padding: 10px;
-                box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-                z-index: 999;
-            }
-
-            h1 {
-                font-size: 3rem; important!
-            }
-
-            nav.active {
-                display: flex
-            }
-
-            .hamburger {
-                display: block
-            }
-        }
     </style>
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <img src="assets/img/jc.png" class="logo-img" />
+
+    <!-- NAV BAR - Siempre Visible y Responsive -->
+    <nav class="navbar-sticky fixed top-0 left-0 right-0 bg-white shadow-lg border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <!-- Placeholder de imagen: Reemplazado 'assets/img/jc.png' -->
+                    <img src="assets/img/jc.png" class="logo-img" alt="Logo JC" />
+                </div>
+                
+                <!-- Menu de Escritorio -->
+                <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                    <a href="#proposito" class="text-gray-900 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition duration-150 ease-in-out">Propósito</a>
+                    <a href="#metodos" class="text-gray-900 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition duration-150 ease-in-out">Lo que Enseño</a>
+                    <a href="#historias" class="text-gray-900 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition duration-150 ease-in-out">Historias</a>
+                    <a href="#contacto" class="text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-full text-sm font-semibold shadow-md transition duration-150 ease-in-out">Contactar</a>
+                </div>
+
+                <!-- Botón Hamburger para Móvil -->
+                <div class="sm:hidden">
+                    <button id="menu-button" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-white hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 transition duration-150 ease-in-out" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Abrir menú principal</span>
+                        <i class="fas fa-bars h-6 w-6"></i>
+                    </button>
+                </div>
+            </div>
         </div>
-        <nav id="navMenu">
-            <a href="#modules">Inicio</a>
-            <a href="#leadForm">Contacto</a>
-            <a href="#experiencie">Experiencias</a>
-            <a href="#redes">Nuestras Redes</a>
-        </nav>
-        <div class="hamburger" id="hamburger"><i class="fa-solid fa-bars"></i></div>
-    </header>
 
-    <div class="container">
-        <!-- Sección HERO y Formulario de Contacto Principal -->
-        <section class="hero card">
-            <div class="hero-video" aria-hidden="true">
-                <video autoplay muted loop playsinline>
-                    <source src="https://ndqzyplsiqigsynweihk.supabase.co/storage/v1/object/public/juliana/trading_intro.mp4" />
-                </video>
+        <!-- Menú Móvil, oculto por defecto -->
+        <div class="sm:hidden hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#proposito" class="text-gray-900 hover:bg-indigo-100 block px-3 py-2 rounded-md text-base font-medium transition duration-150 ease-in-out">Propósito</a>
+                <a href="#metodos" class="text-gray-900 hover:bg-indigo-100 block px-3 py-2 rounded-md text-base font-medium transition duration-150 ease-in-out">Lo que Enseño</a>
+                <a href="#historias" class="text-gray-900 hover:bg-indigo-100 block px-3 py-2 rounded-md text-base font-medium transition duration-150 ease-in-out">Historias</a>
+                <a href="#contacto" class="block w-full text-center text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 my-2 rounded-full text-base font-semibold shadow-md transition duration-150 ease-in-out">Contactar</a>
             </div>
-            <div class="hero-content fade-in" id="modules">
-                <h1>Aprende a generar ingresos online</h1>
-                <p class="lead">Con guías prácticas y soporte real. Módulos claros en networking, dropshipping, trading con asesoría personalizada. Empieza con una lección gratis y avanza a tu ritmo.</p>
-                <div class="cta">
-                    <button class="btn" id="startLesson">Accede a tu primera lección gratuita</button>
-                    <button class="btn ghost" id="watchIntro">Ver la experiencia</button>
-                </div>
-                <div class="modules">
-                    <div class="module"><strong>Networking</strong>
-                        <div class="small">Conecta con colaboradores y oportunidades.</div>
-                    </div>
-                    <div class="module"><strong>Dropshipping</strong>
-                        <div class="small">Tienda funcional sin inventario propio.</div>
-                    </div>
-                    <div class="module"><strong>Trading</strong>
-                        <div class="small">Fundamentos para empezar con seguridad.</div>
-                    </div>
-                    <div class="module"><strong>Asesoría Personalizada</strong>
-                        <div class="small">Acompañamiento gratuito, responderemos cualquier duda que tengas y te guiaremos en el camino a una libertar financiera.</div>
-                    </div>
-                </div>
+        </div>
+    </nav>
+    
+    <!-- Retiramos el pt-16 del main para que el navbar cubra menos espacio -->
+    <main>
+        <!-- HERO SECTION - Video Background -->
+        <!-- FIX: Reemplazo 'h-screen' por 'min-h-[80vh]' y 'py-16' para asegurar que todo el contenido sea visible en móvil.
+             También ajusto el tamaño del texto para pantallas pequeñas. -->
+        <section class="relative min-h-[80vh] py-16 sm:py-24 flex items-center justify-center overflow-hidden bg-gray-900">
+            <!-- Video Background - Placeholder, reemplaza 'your-video-url.mp4' -->
+            <video autoplay loop muted playsinline class="absolute z-0 w-full h-full object-cover opacity-30">
+                <source src="https://ndqzyplsiqigsynweihk.supabase.co/storage/v1/object/public/juliana/trading_intro.mp4" type="video/mp4">
+                Tu navegador no soporta la etiqueta de video.
+            </video>
+
+            <div class="relative z-10 text-center px-4 max-w-4xl text-white">
+                <!-- FIX: Reducido 'text-4xl' a 'text-3xl' en móvil para ahorrar espacio -->
+                <h1 class="text-3xl sm:text-6xl font-extrabold mb-4 leading-tight shadow-text">
+                    Aprende a Generar Ingresos Online <span class="text-indigo-400">Sin Secretos</span>
+                </h1>
+
+                <!-- Placeholder de imagen: Reemplazado 'assets/img/perfil.jpg' -->
+                <img src="assets/img/perfil.jpg" 
+                    alt="Foto de la mentora" 
+                    class="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-indigo-400 shadow-xl object-cover animate-pulse-slow">
+
+                <!-- FIX: Reducido 'text-lg' a 'text-base' en móvil para ahorrar espacio -->
+                <p class="text-base sm:text-xl font-light mb-8 opacity-90">
+                    ¡Hola! Soy Juliana Castro, tu amiga y mentora, estoy aquí para mostrarte el camino comprobado hacia la libertad financiera a través de modelos de negocio digitales.
+                </p>
+                <a href="#contacto" class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full shadow-2xl text-white bg-indigo-600 hover:bg-indigo-700 transition duration-300 transform hover:scale-105 whatsapp-btn">
+                    <i class="fab fa-whatsapp mr-2 text-xl"></i>
+                    Quiero Aprender
+                </a>
             </div>
-            <aside class="card" style="min-width:340px;z-index:2">
-                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-                    <div><strong>Regístrate gratis</strong>
-                        <div class="small">Recibe asesoría sin compromiso</div>
-                    </div>
-                    <div style="font-weight:800;color:var(--accent)">Gratis</div>
-                </div>
-                <form id="leadForm">
-                    <input id="name" type="text" placeholder="Nombre completo" required />
-                    <input id="email" type="email" placeholder="Correo" required />
-                    <input id="phone" type="tel" placeholder="WhatsApp (+57...)" required />
-                    <select id="interest">
-                        <option value="dropshipping">Dropshipping</option>
-                        <option value="trading">Trading</option>
-                        <option value="networking">Networking</option>
-                        <option value="asesoria">Asesoría Generál</option>
-                    </select>
-                    <button class="btn" type="submit">Saber más</button>
-                    <div class="small">Al presionar el botón te comunicarás con un asesor por medio de whatsapp</div>
-                </form>
-            </aside>
         </section>
 
-        <!-- Sección de Contenido en Dos Columnas (Galería, Videos, Testimonios y Contacto) -->
-        <section class="grid2">
-            <!-- Columna 1 -->
-            <div>
-                <div class="card" id="experiencie">
-                    <h2>Galería de Proyectos</h2>
-                    <div class="carousel" id="imgCarousel">
-                        <div class="carousel-track">
-                            <div class="carousel-item"><img src="https://picsum.photos/800/400?random=1" style="width:100%;border-radius:8px" alt="slide1" /></div>
-                            <div class="carousel-item"><img src="https://picsum.photos/800/400?random=2" style="width:100%;border-radius:8px" alt="slide2" /></div>
-                            <div class="carousel-item"><img src="https://picsum.photos/800/400?random=3" style="width:100%;border-radius:8px" alt="slide3" /></div>
-                        </div>
+        <!-- SECCIÓN 1: Propósito / Enfoque de Enseñanza -->
+        <section id="proposito" class="py-16 sm:py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-4">
+                    Mi Propósito: <span class="text-indigo-600">Te Enseño y Tu Eliges</span>
+                </h2>
+                <p class="text-xl text-gray-600 mb-12 max-w-3xl mx-auto">
+                    No te vendo un sueño, te enseño un proceso. Mi misión es equiparte con las habilidades prácticas y la mentalidad correcta para que seas tú quien construya su propia fuente de ingresos.
+                </p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="p-6 bg-gray-50 rounded-xl shadow-lg hover:shadow-xl transition duration-300">
+                        <div class="text-indigo-600 mb-3"><i class="fas fa-handshake text-3xl"></i></div>
+                        <h3 class="text-xl font-semibold mb-2">Mentalidad de Mentoría</h3>
+                        <p class="text-gray-600">Acceso a conocimiento de valor, desmitificando el proceso para generar ganancias reales y sostenibles.</p>
                     </div>
-                    <div class="dots" id="dots"></div>
-                </div>
-
-                <!-- NUEVA SECCIÓN: Carrusel de 3 Videos Verticales -->
-                <div class="card vertical-videos-container">
-                    <h2>Mini Lecciones en Corto</h2>
-                    <p class="small" style="margin-bottom: 12px;">Desliza para ver más tips y toca para reproducir.</p>
-                    <div class="video-carousel-wrapper">
-                        <div class="video-track" id="videoTrack">
-                            <!-- Video 1: Simulación de vertical (usando mixkit) -->
-                            <div class="vertical-video-item">
-                                <!-- Se eliminó 'muted' -->
-                                <video src="https://ndqzyplsiqigsynweihk.supabase.co/storage/v1/object/public/juliana/juliana1.mp4"></video>
-                            </div>
-                            <!-- Video 2 -->
-                            <div class="vertical-video-item">
-                                <!-- Se eliminó 'muted' -->
-                                <video src="https://ndqzyplsiqigsynweihk.supabase.co/storage/v1/object/public/juliana/juliana2.mp4"></video>
-                            </div>
-                            <!-- Video 3 -->
-                            <div class="vertical-video-item">
-                                <!-- Se eliminó 'muted' -->
-                                <video src="https://ndqzyplsiqigsynweihk.supabase.co/storage/v1/object/public/juliana/juliana3.mp4"></video>
-                            </div>
-                        </div>
-                        <button class="nav-btn prev-btn" id="prevVideoBtn"><i class="fa-solid fa-chevron-left"></i></button>
-                        <button class="nav-btn next-btn" id="nextVideoBtn"><i class="fa-solid fa-chevron-right"></i></button>
-                        <div class="video-play-indicator" id="videoPlayIndicator">Toca para reproducir</div>
+                    <div class="p-6 bg-gray-50 rounded-xl shadow-lg hover:shadow-xl transition duration-300">
+                        <div class="text-indigo-600 mb-3"><i class="fas fa-chart-line text-3xl"></i></div>
+                        <h3 class="text-xl font-semibold mb-2">Estrategias Comprobadas</h3>
+                        <p class="text-gray-600">Fórmulas y pasos claros aplicables a Dropshipping, Trading y Network Marketing.</p>
                     </div>
-                </div>
-                <!-- FIN NUEVA SECCIÓN -->
-            </div>
-
-            <!-- Columna 2 -->
-            <div>
-                <div class="card testimonials">
-                    <h2>Testimonios</h2>
-                    <div class="testimonial">"Aprendí a montar mi primera tienda paso a paso"</div>
-                    <div class="testimonial">"Las clases son prácticas y directas, sin relleno"</div>
-                    <div class="testimonial">"El acompañamiento por WhatsApp fue clave para avanzar"</div>
-                </div>
-
-                <div class="card" style="margin-top:18px" id="redes">
-                    <h2>¿Listo para aprender?</h2>
-                    <!-- Manteniendo el subtítulo original -->
-                    <p class="small">Contacta conmigo desde cualquiera de mis redes</p>
-                    <div style="display:flex;gap:8px;margin-top:10px;justify-content:center;flex-wrap:wrap">
-                        <!-- Botón de WhatsApp -->
-                        <button class="btn" id="whatsappBtn"><i class="fa-brands fa-whatsapp"></i> WhatsApp</button>
-                        <!-- Botón de Instagram con color personalizado -->
-                        <button class="btn" id="instagramBtn" style="background:var(--secondary);color:#fff;box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);"><i class="fa-brands fa-instagram"></i> Instagram</button>
-                        <!-- Botón de TikTok con color personalizado -->
-                        <button class="btn" id="tiktokBtn" style="background:#000;color:#fff;box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);"><i class="fa-brands fa-tiktok"></i> TikTok</button>
+                    <div class="p-6 bg-gray-50 rounded-xl shadow-lg hover:shadow-xl transition duration-300">
+                        <div class="text-indigo-600 mb-3"><i class="fas fa-laptop-code text-3xl"></i></div>
+                        <h3 class="text-xl font-semibold mb-2">Aprendizaje Práctico</h3>
+                        <p class="text-gray-600">Contenido enfocado en la ejecución inmediata. ¡Menos teoría, más resultados!</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <footer>
-            <div class="small">© TECSIN Tecnología y Soluciones Informáticas</div>
+        <!-- SECCIÓN 2: Métodos de Ingreso (Lo que Enseña) -->
+        <section id="metodos" class="py-16 sm:py-24 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-12 text-center">
+                    Los 3 Pilares del Éxito Digital que Exploraremos
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Dropshipping -->
+                    <div class="bg-white p-8 rounded-xl shadow-xl border-t-4 border-indigo-600">
+                        <div class="text-indigo-600 mb-4"><i class="fas fa-box-open text-4xl"></i></div>
+                        <h3 class="text-2xl font-bold mb-3">Dropshipping</h3>
+                        <p class="text-gray-600">Crea tu tienda online sin manejar inventario. Te enseño a encontrar productos ganadores, optimizar proveedores y escalar con publicidad efectiva.</p>
+                    </div>
+                    <!-- Network Marketing -->
+                    <div class="bg-white p-8 rounded-xl shadow-xl border-t-4 border-indigo-600">
+                        <div class="fas fa-users text-indigo-600 mb-4 text-4xl"></i></div>
+                        <h3 class="text-2xl font-bold mb-3">Network Marketing</h3>
+                        <p class="text-gray-600">Domina la construcción de equipos y la venta de valor en la era digital. Estrategias de atracción orgánicas y profesionales.</p>
+                    </div>
+                    <!-- Trading -->
+                    <div class="bg-white p-8 rounded-xl shadow-xl border-t-4 border-indigo-600">
+                        <div class="text-indigo-600 mb-4"><i class="fas fa-chart-area text-4xl"></i></div>
+                        <h3 class="text-2xl font-bold mb-3">Trading</h3>
+                        <p class="text-gray-600">Entiende los mercados financieros. Desde análisis técnico básico hasta la gestión de riesgo. Aprende a tomar decisiones informadas.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- SECCIÓN 3: Videos Verticales (Touch Scroll) -->
+        <section id="videos" class="py-16 sm:py-24 bg-gray-900">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-10">
+                    Lo Comparto <span class="text-accent-color">Contigo</span>
+                </h2>
+                <p class="text-lg text-gray-300 mb-8">
+                    Desliza para ver mis experiencias y estrategias.
+                </p>
+
+                <!-- Contenedor de Videos con Scroll Horizontal y Touch -->
+                <div class="flex vertical-videos space-x-6 p-4 overflow-x-scroll rounded-xl bg-gray-800 shadow-2xl">
+                    
+                    <!-- Video 1 -->
+                    <div class="video-card flex-shrink-0 bg-gray-700 rounded-lg overflow-hidden shadow-lg h-96 w-72 mx-auto">
+                        <video controls class="w-full h-full object-cover">
+                            <!-- Placeholder de video vertical. Usa videos reales de tu amiga. -->
+                            <source src="https://ndqzyplsiqigsynweihk.supabase.co/storage/v1/object/public/juliana/juliana1.mp4" type="video/mp4">
+                            Video 1
+                        </video>
+                    </div>
+
+                    <!-- Video 2 -->
+                    <div class="video-card flex-shrink-0 bg-gray-700 rounded-lg overflow-hidden shadow-lg h-96 w-72 mx-auto">
+                        <video controls class="w-full h-full object-cover">
+                            <!-- Placeholder de video vertical -->
+                            <source src="https://ndqzyplsiqigsynweihk.supabase.co/storage/v1/object/public/juliana/juliana2.mp4" type="video/mp4">
+                            Video 2
+                        </video>
+                    </div>
+
+                    <!-- Video 3 -->
+                    <div class="video-card flex-shrink-0 bg-gray-700 rounded-lg overflow-hidden shadow-lg h-96 w-72 mx-auto">
+                        <video controls class="w-full h-full object-cover">
+                            <!-- Placeholder de video vertical -->
+                            <source src="https://ndqzyplsiqigsynweihk.supabase.co/storage/v1/object/public/juliana/juliana3.mp4" type="video/mp4">
+                            Video 3
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 4: Testimonios (Carrusel) -->
+        <section id="historias" class="py-16 sm:py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-10 text-center">
+                    Historias de Éxito de Alumnos
+                </h2>
+                
+                <!-- Carrusel de Testimonios con Scroll Horizontal y Touch -->
+                <div id="carousel" class="flex testimonial-carousel space-x-6 p-4 overflow-x-scroll -mx-4">
+                    
+                    <!-- Testimonio 1 -->
+                    <div class="testimonial-card flex-shrink-0 bg-white p-6 rounded-xl shadow-2xl border-l-4 border-accent-color">
+                        <p class="text-gray-700 italic mb-4">"Gracias a la mentoría, pude dejar mi trabajo de 9 a 5 y enfocarme en mi negocio de Dropshipping. La claridad de las estrategias no tiene precio."</p>
+                        <div class="flex items-center">
+                            <img src="https://placehold.co/40x40/4f46e5/ffffff?text=JN" alt="Testimonio de Juan N." class="w-10 h-10 rounded-full mr-3">
+                            <div>
+                                <p class="font-semibold text-gray-900">Juan N.</p>
+                                <p class="text-sm text-indigo-600">Emprendedor Digital</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonio 2 -->
+                    <div class="testimonial-card flex-shrink-0 bg-white p-6 rounded-xl shadow-2xl border-l-4 border-accent-color">
+                        <p class="text-gray-700 italic mb-4">"Antes no entendía nada de Trading, ahora tengo un plan de riesgo sólido y estoy viendo ganancias consistentes. ¡El apoyo fue clave!"</p>
+                        <div class="flex items-center">
+                            <img src="https://placehold.co/40x40/4f46e5/ffffff?text=MR" alt="Testimonio de María R." class="w-10 h-10 rounded-full mr-3">
+                            <div>
+                                <p class="font-semibold text-gray-900">María R.</p>
+                                <p class="text-sm text-indigo-600">Inversionista</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonio 3 -->
+                    <div class="testimonial-card flex-shrink-0 bg-white p-6 rounded-xl shadow-2xl border-l-4 border-accent-color">
+                        <p class="text-gray-700 italic mb-4">"Mi red de Network Marketing creció exponencialmente con las técnicas que me enseñaste. Es mucho más que solo 'vender'."</p>
+                        <div class="flex items-center">
+                            <img src="https://placehold.co/40x40/4f46e5/ffffff?text=CP" alt="Testimonio de Carlos P." class="w-10 h-10 rounded-full mr-3">
+                            <div>
+                                <p class="font-semibold text-gray-900">Carlos P.</p>
+                                <p class="text-sm text-indigo-600">Líder de Equipo</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonio 4 (Extra) -->
+                    <div class="testimonial-card flex-shrink-0 bg-white p-6 rounded-xl shadow-2xl border-l-4 border-accent-color">
+                        <p class="text-gray-700 italic mb-4">"Desde que aprendí a delegar y automatizar, mi negocio digital es mucho más libre. ¡Recomendado 100%!"</p>
+                        <div class="flex items-center">
+                            <img src="https://placehold.co/40x40/4f46e5/ffffff?text=LT" alt="Testimonio de Laura T." class="w-10 h-10 rounded-full mr-3">
+                            <div>
+                                <p class="font-semibold text-gray-900">Laura T.</p>
+                                <p class="text-sm text-indigo-600">Autónoma</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 5: Contacto y Formulario CTA -->
+        <section id="contacto" class="py-16 sm:py-24 bg-dark-bg">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-white p-8 sm:p-12 rounded-2xl shadow-2xl text-center">
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-4">
+                        ¿Lista(o) Para Empezar?
+                    </h2>
+                    <p class="text-lg text-gray-600 mb-8">
+                        Déjame tus datos por WhatsApp y hablemos sobre tu objetivo y cómo podemos lograrlo.
+                    </p>
+
+                    <!-- Formulario -->
+                    <form id="whatsapp-form" class="space-y-6">
+                        <div>
+                            <input type="text" id="name" name="name" placeholder="Tu Nombre" required class="w-full px-5 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-150">
+                        </div>
+                        <div>
+                            <input type="email" id="email" name="email" placeholder="Tu Correo Electrónico" required class="w-full px-5 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-150">
+                        </div>
+                        <button type="submit" class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-semibold rounded-full shadow-lg text-white bg-accent-color hover:bg-emerald-600 transition duration-300 transform hover:scale-[1.02] whatsapp-btn">
+                            <i class="fab fa-whatsapp mr-3 text-xl"></i>
+                            Aprender Ya
+                        </button>
+                    </form>
+
+                    <!-- Mensaje de Error/Éxito (Custom Modal Placeholder) -->
+                    <div id="form-message" class="mt-4 p-3 rounded-lg text-sm hidden" role="alert"></div>
+                    
+                    <div class="mt-12">
+                        <h3 class="text-xl font-semibold mb-6 text-gray-800">
+                            También puedes seguirme en mis redes:
+                        </h3>
+                        <div class="flex justify-center space-x-6">
+                            <!-- WhatsApp Button (Icono de Botón) -->
+                            <a href="https://wa.me/573052492882" target="_blank" class="text-4xl text-green-500 hover:text-green-600 transition duration-150 transform hover:scale-110" aria-label="WhatsApp">
+                                <i class="fab fa-whatsapp-square"></i>
+                            </a>
+                            <!-- Instagram Button (Icono de Botón) -->
+                            <a href="https://www.instagram.com/juliana.castroos/" target="_blank" class="text-4xl text-pink-600 hover:text-pink-700 transition duration-150 transform hover:scale-110" aria-label="Instagram">
+                                <i class="fab fa-instagram-square"></i>
+                            </a>
+                            <!-- TikTok Button (Icono de Botón) -->
+                            <a href="https://www.tiktok.com/@julianaa.castroo" target="_blank" class="text-4xl text-black hover:text-gray-700 transition duration-150 transform hover:scale-110" aria-label="TikTok">
+                                <i class="fab fa-tiktok"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="bg-gray-900 text-white py-8">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <p class="text-sm">&copy; 2025 - Juliana Castro | Todos los derechos reservados - TECSIN S.A.S</p>
+                <p class="text-xs text-gray-500 mt-2">Los resultados pueden variar. El esfuerzo y la dedicación son clave.</p>
+            </div>
         </footer>
-    </div>
 
+    </main>
+
+    <!-- JavaScript para interactividad -->
     <script>
-        // Lógica de Navegación Móvil (Hamburger)
-        const hamburger = document.getElementById('hamburger');
-        const navMenu = document.getElementById('navMenu');
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuButton = document.getElementById('menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navLinks = document.querySelectorAll('#mobile-menu a');
+            const whatsappForm = document.getElementById('whatsapp-form');
+            const formMessage = document.getElementById('form-message');
 
-        hamburger.addEventListener('click', () => {
-            navMenu.classList.toggle('active')
-        });
-        document.querySelectorAll('#navMenu a').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active')
+            // 1. Toggle del menú hamburguer
+            menuButton.addEventListener('click', () => {
+                const isExpanded = menuButton.getAttribute('aria-expanded') === 'true' || false;
+                menuButton.setAttribute('aria-expanded', !isExpanded);
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // 1.1 Cerrar menú móvil al hacer click en un enlace
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    menuButton.setAttribute('aria-expanded', 'false');
+                });
+            });
+
+            // 2. Lógica del Formulario a WhatsApp
+            whatsappForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+
+                // Teléfono de contacto (USAMOS EL MISMO NÚMERO DEL BOTÓN DE WHATSAPP)
+                const phoneNumber = '573052492882'; 
+                
+                // Mensaje pre-rellenado
+                const message = encodeURIComponent(`¡Hola! Soy ${name} (${email}) y estoy interesada(o) en tu mentoría para generar ingresos online (Dropshipping, Trading, Networking). ¿Podemos hablar?`);
+                
+                // URL de WhatsApp
+                const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+
+                // Mostrar mensaje de éxito (simulado en el div) y redirigir
+                formMessage.classList.remove('hidden', 'bg-red-100', 'text-red-700');
+                formMessage.classList.add('bg-green-100', 'text-green-700');
+                formMessage.innerHTML = '¡Excelente! Redirigiendo a WhatsApp...';
+                
+                // Abrir WhatsApp en una nueva pestaña después de un breve retraso
+                setTimeout(() => {
+                    window.open(whatsappUrl, '_blank');
+                    // Opcional: Limpiar el formulario después del envío
+                    whatsappForm.reset(); 
+                    formMessage.classList.add('hidden');
+                }, 1000); 
+            });
+
+            // 3. Scroll Suave para anclas
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
             });
         });
-
-        // Lógica del Carrusel de Imágenes
-        const track = document.querySelector('#imgCarousel .carousel-track')
-        const slides = Array.from(track.children)
-        const dotsEl = document.getElementById('dots')
-        let index = 0
-
-        slides.forEach((s, i) => {
-            const d = document.createElement('div')
-            d.className = 'dot'
-            if (i === 0) d.classList.add('active')
-            d.addEventListener('click', () => {
-                goTo(i)
-            })
-            dotsEl.appendChild(d)
-        })
-
-        function goTo(i) {
-            index = i;
-            update()
-        }
-
-        function update() {
-            track.style.transform = `translateX(-${index*100}%)`;
-            Array.from(dotsEl.children).forEach((d, idx) => d.classList.toggle('active', idx === index))
-        }
-
-        // Auto-avance del carrusel de imágenes
-        setInterval(() => {
-            index = (index + 1) % slides.length;
-            update()
-        }, 4500)
-
-        // Lógica del Formulario de Leads (WhatsApp)
-        document.getElementById('leadForm').addEventListener('submit', e => {
-            e.preventDefault()
-            const name = document.getElementById('name').value
-            const email = document.getElementById('email').value
-            // Manteniendo el número de ejemplo del formulario original: 573227671829
-            const phoneDest = '573052492882';
-            const interest = document.getElementById('interest').value
-            const text = `Hola, soy ${name} y quiero acceder a la lección gratuita. Estoy interesad@ en ${interest}, mi correo es: ${email}`
-            const waUrl = `https://wa.me/${phoneDest}?text=${encodeURIComponent(text)}`
-            window.open(waUrl, '_blank')
-        })
-
-        // Lógica de Botones de Contacto
-        document.getElementById('whatsappBtn').addEventListener('click', () => {
-            const wa = `https://wa.me/573052492882?text=${encodeURIComponent('Hola, quiero más información sobre las lecciones')}`
-            window.open(wa, '_blank')
-        })
-
-        document.getElementById('instagramBtn').addEventListener('click', () => {
-            const wa = `https://www.instagram.com/juliana.castroos/`
-            window.open(wa, '_blank')
-        })
-
-        document.getElementById('tiktokBtn').addEventListener('click', () => {
-            const wa = `https://www.tiktok.com/@julianaa.castroo`
-            window.open(wa, '_blank')
-        })
-
-        document.getElementById('startLesson').addEventListener('click', () => document.getElementById('name').focus())
-        document.getElementById('watchIntro').addEventListener('click', () => window.scrollTo({
-            top: 800,
-            behavior: 'smooth'
-        }))
-        document.getElementById('calendarBtn').addEventListener('click', () => window.open('https://calendly.com/tu-agenda', '_blank'))
-
-
-        // Lógica para el carrusel de Videos Verticales (NUEVA FUNCIONALIDAD)
-        const videoTrack = document.getElementById('videoTrack');
-        const videoItems = Array.from(videoTrack.children);
-        const prevVideoBtn = document.getElementById('prevVideoBtn');
-        const nextVideoBtn = document.getElementById('nextVideoBtn');
-        const videoPlayIndicator = document.getElementById('videoPlayIndicator');
-        let videoIndex = 0;
-
-        function updateVideoCarousel() {
-            // Mover el track con animación CSS
-            videoTrack.style.transform = `translateX(-${videoIndex * 100}%)`;
-
-            // Pausar todos los videos
-            videoItems.forEach(item => {
-                const video = item.querySelector('video');
-                video.pause();
-            });
-
-            // Mostrar el indicador de "Toca para reproducir" en el video actual
-            videoPlayIndicator.textContent = 'Toca para reproducir';
-            videoPlayIndicator.classList.remove('playing');
-        }
-
-        function nextVideo() {
-            videoIndex = (videoIndex + 1) % videoItems.length;
-            updateVideoCarousel();
-        }
-
-        function prevVideo() {
-            // Manejo de índice circular para ir hacia atrás
-            videoIndex = (videoIndex - 1 + videoItems.length) % videoItems.length;
-            updateVideoCarousel();
-        }
-
-        nextVideoBtn.addEventListener('click', nextVideo);
-        prevVideoBtn.addEventListener('click', prevVideo);
-
-        videoItems.forEach((item, index) => {
-            const video = item.querySelector('video');
-            // Configuración inicial de los videos
-            // Se eliminó la línea 'video.muted = true;'
-            video.loop = true;
-
-            item.addEventListener('click', () => {
-                // Solo interactuar si es el video visible actualmente
-                if (index === videoIndex) {
-                    if (video.paused) {
-                        video.muted = false; // <--- Habilitar audio al hacer clic/tocar
-                        video.play().catch(e => console.error("Error al intentar reproducir video:", e));
-                        videoPlayIndicator.classList.add('playing');
-                    } else {
-                        video.pause();
-                        videoPlayIndicator.textContent = 'Pausado';
-                        videoPlayIndicator.classList.remove('playing');
-                    }
-                }
-            });
-
-            video.addEventListener('play', () => {
-                videoPlayIndicator.classList.add('playing');
-            });
-
-            video.addEventListener('pause', () => {
-                videoPlayIndicator.textContent = 'Toca para reanudar';
-                videoPlayIndicator.classList.remove('playing');
-            });
-        });
-
-        // Inicializar carrusel al cargar la página
-        updateVideoCarousel();
     </script>
 </body>
 </html>
