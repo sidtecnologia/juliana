@@ -1,0 +1,738 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Aprende Ingresos Online - Landing</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Variables y configuración general */
+        :root {
+            --accent: #ff6b6b; /* Coral vivo */
+            --secondary: #4ecdc4; /* Turquesa */
+            --highlight: #ffe66d; /* Amarillo brillante */
+            --bg: #fdfdfd;
+            --card: #ffffff;
+            --muted: #6c757d;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+            background: linear-gradient(180deg, #fff, #f8f9fc);
+            color: #212529;
+            line-height: 1.5;
+            /* Añadir padding para compensar el header fijo */
+            padding-top: 70px; 
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px
+        }
+
+        /* Header y Navegación */
+        header {
+            /* Hacemos el header fijo */
+            position: fixed; 
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+            padding: 8px 20px;
+            background: rgba(255, 255, 255, 0.95); /* Fondo blanco semitransparente */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            z-index: 1000; /* Asegurar que esté por encima de otros elementos */
+        }
+        
+        .logo {
+            font-weight: 700;
+            font-size: 20px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            color: var(--accent)
+        }
+        
+        .logo-img {
+            height: 40px;
+            border-radius: 6px;
+            object-fit: cover;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #212529;
+            font-weight: 600;
+            padding: 10px 0;
+        }
+
+        nav a:hover {
+            color: var(--accent)
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--accent)
+        }
+
+        section {
+            padding: 60px 20px;
+        }
+        
+
+        .hero {
+            position: relative;
+            border-radius: 14px;
+            overflow: hidden;
+            margin: 18px 0;
+            display: grid;
+            grid-template-columns: 1fr 420px;
+            gap: 24px;
+            align-items: center;
+            padding: 24px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--secondary) 100%);
+            color: var(--accent)
+        }
+
+        .hero-video {
+            position: absolute;
+            inset: 0;
+            z-index: 0
+        }
+
+        .hero-video video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.3)
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 10px
+        }
+
+        p.lead {
+            margin: 0 0 18px;
+            color: #f1f1f1
+        }
+
+        .cta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px
+        }
+
+        .btn {
+            background: var(--highlight);
+            color: #212529;
+            padding: 12px 18px;
+            border-radius: 10px;
+            border: 0;
+            cursor: pointer;
+            font-weight: 700;
+            transition: background .3s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn:hover {
+            background: #ffd43b
+        }
+
+        .btn.ghost {
+            background: transparent;
+            border: 2px solid #fff;
+            color: #fff;
+            box-shadow: none;
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 18px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08)
+        }
+
+        .modules {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+            margin-top: 16px
+        }
+
+        .module {
+            padding: 12px;
+            border-radius: 8px;
+            background: linear-gradient(180deg, #fff, #fdfdfd);
+            border: 1px solid #eee;
+            text-align: center;
+            transition: transform .3s;
+        }
+
+        .module:hover {
+            transform: translateY(-4px)
+        }
+
+        .grid2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 18px;
+            margin-top: 24px
+        }
+
+        /* Carrusel de Imágenes */
+        .carousel {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .carousel img {
+            border-radius: 12px;
+            scroll-snap-align: center;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform .5s ease
+        }
+
+        .carousel-item {
+            min-width: 100%;
+            padding: 12px
+        }
+
+        .dots {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin-top: 12px
+        }
+
+        .dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: #ddd;
+            cursor: pointer
+        }
+
+        .dot.active {
+            background: var(--accent)
+        }
+
+        /* Estilos de Formulario y Footer */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px
+        }
+
+        input,
+        textarea,
+        select {
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #e6eef8
+        }
+
+        .small {
+            font-size: 13px;
+            color: var(--muted)
+        }
+
+        footer {
+            background: #f1f1f1;
+            padding: 20px;
+            text-align: center;
+            font-size: .9rem;
+            color: var(--muted);
+            margin-top: 40px;
+        }
+
+        .testimonials {
+            display: flex;
+            flex-direction: column;
+            gap: 12px
+        }
+
+        .testimonial {
+            background: #fff;
+            padding: 14px;
+            border-radius: 10px;
+            border-left: 4px solid var(--secondary);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Animaciones */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(12px);
+            animation: fadeIn .8s forwards
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: none
+            }
+        }
+
+        /* Estilos para el nuevo carrusel de videos verticales */
+        .vertical-videos-container {
+            padding: 18px;
+            margin-top: 18px;
+            text-align: center;
+        }
+
+        .video-carousel-wrapper {
+            position: relative;
+            max-width: 300px; /* Ancho típico de video vertical */
+            height: 533px; /* Proporción 9:16 para el contenedor */
+            margin: 16px auto 0;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-track {
+            display: flex;
+            height: 100%;
+            transition: transform 0.4s ease-in-out;
+        }
+
+        .vertical-video-item {
+            min-width: 100%;
+            height: 100%;
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+
+        .vertical-video-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            font-size: 16px;
+            z-index: 10;
+            transition: background 0.3s, opacity 0.3s;
+            opacity: 0.8;
+        }
+
+        .nav-btn:hover {
+            background: var(--accent);
+            opacity: 1;
+        }
+
+        .prev-btn {
+            left: 10px;
+        }
+
+        .next-btn {
+            right: 10px;
+        }
+
+        .video-play-indicator {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            transition: opacity 0.3s;
+        }
+
+        .playing {
+            opacity: 0;
+        }
+
+        /* Media Queries (Responsive Design) */
+        @media(max-width:920px) {
+            .hero {
+                grid-template-columns: 1fr
+            }
+
+            .hero aside {
+                min-width: unset;
+                width: 100%;
+                margin-top: 16px;
+            }
+
+            .vertical-videos-container {
+                padding: 12px;
+            }
+
+            .video-carousel-wrapper {
+                max-width: 250px;
+                height: 444px; /* Proporción 9:16 */
+            }
+        }
+
+        @media(max-width:768px) {
+            body {
+                padding-top: 60px; 
+            }
+            header {
+                padding: 8px 10px;
+            }
+
+            nav {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 56px; /* Ajustar basado en la altura del header */
+                right: 20px;
+                background: #fff;
+                border-radius: 8px;
+                padding: 10px;
+                box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+                z-index: 999;
+            }
+
+            h1 {
+                font-size: 3rem; important!
+            }
+
+            nav.active {
+                display: flex
+            }
+
+            .hamburger {
+                display: block
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="assets/img/jc.png" class="logo-img" />
+        </div>
+        <nav id="navMenu">
+            <a href="#modules">Inicio</a>
+            <a href="#leadForm">Contacto</a>
+            <a href="#experiencie">Experiencias</a>
+            <a href="#redes">Nuestras Redes</a>
+        </nav>
+        <div class="hamburger" id="hamburger"><i class="fa-solid fa-bars"></i></div>
+    </header>
+
+    <div class="container">
+        <!-- Sección HERO y Formulario de Contacto Principal -->
+        <section class="hero card">
+            <div class="hero-video" aria-hidden="true">
+                <video autoplay muted loop playsinline>
+                    <source src="https://ndqzyplsiqigsynweihk.supabase.co/storage/v1/object/public/juliana/trading_intro.mp4" />
+                </video>
+            </div>
+            <div class="hero-content fade-in" id="modules">
+                <h1>Aprende a generar ingresos online</h1>
+                <p class="lead">Con guías prácticas y soporte real. Módulos claros en networking, dropshipping, trading con asesoría personalizada. Empieza con una lección gratis y avanza a tu ritmo.</p>
+                <div class="cta">
+                    <button class="btn" id="startLesson">Accede a tu primera lección gratuita</button>
+                    <button class="btn ghost" id="watchIntro">Ver la experiencia</button>
+                </div>
+                <div class="modules">
+                    <div class="module"><strong>Networking</strong>
+                        <div class="small">Conecta con colaboradores y oportunidades.</div>
+                    </div>
+                    <div class="module"><strong>Dropshipping</strong>
+                        <div class="small">Tienda funcional sin inventario propio.</div>
+                    </div>
+                    <div class="module"><strong>Trading</strong>
+                        <div class="small">Fundamentos para empezar con seguridad.</div>
+                    </div>
+                    <div class="module"><strong>Asesoría Personalizada</strong>
+                        <div class="small">Acompañamiento gratuito, responderemos cualquier duda que tengas y te guiaremos en el camino a una libertar financiera.</div>
+                    </div>
+                </div>
+            </div>
+            <aside class="card" style="min-width:340px;z-index:2">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+                    <div><strong>Regístrate gratis</strong>
+                        <div class="small">Recibe asesoría sin compromiso</div>
+                    </div>
+                    <div style="font-weight:800;color:var(--accent)">Gratis</div>
+                </div>
+                <form id="leadForm">
+                    <input id="name" type="text" placeholder="Nombre completo" required />
+                    <input id="email" type="email" placeholder="Correo" required />
+                    <input id="phone" type="tel" placeholder="WhatsApp (+57...)" required />
+                    <select id="interest">
+                        <option value="dropshipping">Dropshipping</option>
+                        <option value="trading">Trading</option>
+                        <option value="networking">Networking</option>
+                        <option value="asesoria">Asesoría Generál</option>
+                    </select>
+                    <button class="btn" type="submit">Saber más</button>
+                    <div class="small">Al presionar el botón te comunicarás con un asesor por medio de whatsapp</div>
+                </form>
+            </aside>
+        </section>
+
+        <!-- Sección de Contenido en Dos Columnas (Galería, Videos, Testimonios y Contacto) -->
+        <section class="grid2">
+            <!-- Columna 1 -->
+            <div>
+                <div class="card" id="experiencie">
+                    <h2>Galería de Proyectos</h2>
+                    <div class="carousel" id="imgCarousel">
+                        <div class="carousel-track">
+                            <div class="carousel-item"><img src="https://picsum.photos/800/400?random=1" style="width:100%;border-radius:8px" alt="slide1" /></div>
+                            <div class="carousel-item"><img src="https://picsum.photos/800/400?random=2" style="width:100%;border-radius:8px" alt="slide2" /></div>
+                            <div class="carousel-item"><img src="https://picsum.photos/800/400?random=3" style="width:100%;border-radius:8px" alt="slide3" /></div>
+                        </div>
+                    </div>
+                    <div class="dots" id="dots"></div>
+                </div>
+
+                <!-- NUEVA SECCIÓN: Carrusel de 3 Videos Verticales -->
+                <div class="card vertical-videos-container">
+                    <h2>Mini Lecciones en Corto</h2>
+                    <p class="small" style="margin-bottom: 12px;">Desliza para ver más tips y toca para reproducir.</p>
+                    <div class="video-carousel-wrapper">
+                        <div class="video-track" id="videoTrack">
+                            <!-- Video 1: Simulación de vertical (usando mixkit) -->
+                            <div class="vertical-video-item">
+                                <!-- Se eliminó 'muted' -->
+                                <video src="https://ndqzyplsiqigsynweihk.supabase.co/storage/v1/object/public/juliana/juliana1.mp4"></video>
+                            </div>
+                            <!-- Video 2 -->
+                            <div class="vertical-video-item">
+                                <!-- Se eliminó 'muted' -->
+                                <video src="https://ndqzyplsiqigsynweihk.supabase.co/storage/v1/object/public/juliana/juliana2.mp4"></video>
+                            </div>
+                            <!-- Video 3 -->
+                            <div class="vertical-video-item">
+                                <!-- Se eliminó 'muted' -->
+                                <video src="https://ndqzyplsiqigsynweihk.supabase.co/storage/v1/object/public/juliana/juliana3.mp4"></video>
+                            </div>
+                        </div>
+                        <button class="nav-btn prev-btn" id="prevVideoBtn"><i class="fa-solid fa-chevron-left"></i></button>
+                        <button class="nav-btn next-btn" id="nextVideoBtn"><i class="fa-solid fa-chevron-right"></i></button>
+                        <div class="video-play-indicator" id="videoPlayIndicator">Toca para reproducir</div>
+                    </div>
+                </div>
+                <!-- FIN NUEVA SECCIÓN -->
+            </div>
+
+            <!-- Columna 2 -->
+            <div>
+                <div class="card testimonials">
+                    <h2>Testimonios</h2>
+                    <div class="testimonial">"Aprendí a montar mi primera tienda paso a paso"</div>
+                    <div class="testimonial">"Las clases son prácticas y directas, sin relleno"</div>
+                    <div class="testimonial">"El acompañamiento por WhatsApp fue clave para avanzar"</div>
+                </div>
+
+                <div class="card" style="margin-top:18px" id="redes">
+                    <h2>¿Listo para aprender?</h2>
+                    <!-- Manteniendo el subtítulo original -->
+                    <p class="small">Contacta conmigo desde cualquiera de mis redes</p>
+                    <div style="display:flex;gap:8px;margin-top:10px;justify-content:center;flex-wrap:wrap">
+                        <!-- Botón de WhatsApp -->
+                        <button class="btn" id="whatsappBtn"><i class="fa-brands fa-whatsapp"></i> WhatsApp</button>
+                        <!-- Botón de Instagram con color personalizado -->
+                        <button class="btn" id="instagramBtn" style="background:var(--secondary);color:#fff;box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);"><i class="fa-brands fa-instagram"></i> Instagram</button>
+                        <!-- Botón de TikTok con color personalizado -->
+                        <button class="btn" id="tiktokBtn" style="background:#000;color:#fff;box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);"><i class="fa-brands fa-tiktok"></i> TikTok</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="small">© TECSIN Tecnología y Soluciones Informáticas</div>
+        </footer>
+    </div>
+
+    <script>
+        // Lógica de Navegación Móvil (Hamburger)
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active')
+        });
+        document.querySelectorAll('#navMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active')
+            });
+        });
+
+        // Lógica del Carrusel de Imágenes
+        const track = document.querySelector('#imgCarousel .carousel-track')
+        const slides = Array.from(track.children)
+        const dotsEl = document.getElementById('dots')
+        let index = 0
+
+        slides.forEach((s, i) => {
+            const d = document.createElement('div')
+            d.className = 'dot'
+            if (i === 0) d.classList.add('active')
+            d.addEventListener('click', () => {
+                goTo(i)
+            })
+            dotsEl.appendChild(d)
+        })
+
+        function goTo(i) {
+            index = i;
+            update()
+        }
+
+        function update() {
+            track.style.transform = `translateX(-${index*100}%)`;
+            Array.from(dotsEl.children).forEach((d, idx) => d.classList.toggle('active', idx === index))
+        }
+
+        // Auto-avance del carrusel de imágenes
+        setInterval(() => {
+            index = (index + 1) % slides.length;
+            update()
+        }, 4500)
+
+        // Lógica del Formulario de Leads (WhatsApp)
+        document.getElementById('leadForm').addEventListener('submit', e => {
+            e.preventDefault()
+            const name = document.getElementById('name').value
+            const email = document.getElementById('email').value
+            // Manteniendo el número de ejemplo del formulario original: 573227671829
+            const phoneDest = '573052492882';
+            const interest = document.getElementById('interest').value
+            const text = `Hola, soy ${name} y quiero acceder a la lección gratuita. Estoy interesad@ en ${interest}, mi correo es: ${email}`
+            const waUrl = `https://wa.me/${phoneDest}?text=${encodeURIComponent(text)}`
+            window.open(waUrl, '_blank')
+        })
+
+        // Lógica de Botones de Contacto
+        document.getElementById('whatsappBtn').addEventListener('click', () => {
+            const wa = `https://wa.me/573052492882?text=${encodeURIComponent('Hola, quiero más información sobre las lecciones')}`
+            window.open(wa, '_blank')
+        })
+
+        document.getElementById('instagramBtn').addEventListener('click', () => {
+            const wa = `https://www.instagram.com/juliana.castroos/`
+            window.open(wa, '_blank')
+        })
+
+        document.getElementById('tiktokBtn').addEventListener('click', () => {
+            const wa = `https://www.tiktok.com/@julianaa.castroo`
+            window.open(wa, '_blank')
+        })
+
+        document.getElementById('startLesson').addEventListener('click', () => document.getElementById('name').focus())
+        document.getElementById('watchIntro').addEventListener('click', () => window.scrollTo({
+            top: 800,
+            behavior: 'smooth'
+        }))
+        document.getElementById('calendarBtn').addEventListener('click', () => window.open('https://calendly.com/tu-agenda', '_blank'))
+
+
+        // Lógica para el carrusel de Videos Verticales (NUEVA FUNCIONALIDAD)
+        const videoTrack = document.getElementById('videoTrack');
+        const videoItems = Array.from(videoTrack.children);
+        const prevVideoBtn = document.getElementById('prevVideoBtn');
+        const nextVideoBtn = document.getElementById('nextVideoBtn');
+        const videoPlayIndicator = document.getElementById('videoPlayIndicator');
+        let videoIndex = 0;
+
+        function updateVideoCarousel() {
+            // Mover el track con animación CSS
+            videoTrack.style.transform = `translateX(-${videoIndex * 100}%)`;
+
+            // Pausar todos los videos
+            videoItems.forEach(item => {
+                const video = item.querySelector('video');
+                video.pause();
+            });
+
+            // Mostrar el indicador de "Toca para reproducir" en el video actual
+            videoPlayIndicator.textContent = 'Toca para reproducir';
+            videoPlayIndicator.classList.remove('playing');
+        }
+
+        function nextVideo() {
+            videoIndex = (videoIndex + 1) % videoItems.length;
+            updateVideoCarousel();
+        }
+
+        function prevVideo() {
+            // Manejo de índice circular para ir hacia atrás
+            videoIndex = (videoIndex - 1 + videoItems.length) % videoItems.length;
+            updateVideoCarousel();
+        }
+
+        nextVideoBtn.addEventListener('click', nextVideo);
+        prevVideoBtn.addEventListener('click', prevVideo);
+
+        videoItems.forEach((item, index) => {
+            const video = item.querySelector('video');
+            // Configuración inicial de los videos
+            // Se eliminó la línea 'video.muted = true;'
+            video.loop = true;
+
+            item.addEventListener('click', () => {
+                // Solo interactuar si es el video visible actualmente
+                if (index === videoIndex) {
+                    if (video.paused) {
+                        video.muted = false; // <--- Habilitar audio al hacer clic/tocar
+                        video.play().catch(e => console.error("Error al intentar reproducir video:", e));
+                        videoPlayIndicator.classList.add('playing');
+                    } else {
+                        video.pause();
+                        videoPlayIndicator.textContent = 'Pausado';
+                        videoPlayIndicator.classList.remove('playing');
+                    }
+                }
+            });
+
+            video.addEventListener('play', () => {
+                videoPlayIndicator.classList.add('playing');
+            });
+
+            video.addEventListener('pause', () => {
+                videoPlayIndicator.textContent = 'Toca para reanudar';
+                videoPlayIndicator.classList.remove('playing');
+            });
+        });
+
+        // Inicializar carrusel al cargar la página
+        updateVideoCarousel();
+    </script>
+</body>
+</html>
