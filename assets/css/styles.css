@@ -1,0 +1,84 @@
+
+        /* Configuración de Tailwind y fuente Poppins */
+        :root {
+            --primary-color: #4f46e5; /* Indigo-600 */
+            --accent-color: #10b981; /* Emerald-500 */
+            --dark-bg: #111827; /* Gray-900 */
+            --light-text: #f9fafb; /* Gray-50 */
+        }
+        
+        body {
+            /* Dejamos un margen para el navbar fijo, pero lo restamos del padding total de las secciones */
+            margin-top: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light-text);
+        }
+
+        /* Estilo para el Navbar fijo */
+        .navbar-sticky {
+            z-index: 1000;
+        }
+
+        /* Estilo para la sección de videos verticales */
+        .vertical-videos {
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch; /* Habilitar scroll suave en iOS */
+        }
+
+        .video-card {
+            scroll-snap-align: center;
+            flex: 0 0 90%; /* Ancho de la tarjeta en móvil */
+        }
+
+        @media (min-width: 640px) {
+            .video-card {
+                flex: 0 0 30%; /* Ancho de la tarjeta en escritorio/tablet */
+            }
+        }
+
+        /* Estilo para el carrusel de testimonios */
+        .testimonial-carousel {
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .testimonial-card {
+            scroll-snap-align: center;
+            flex: 0 0 90%; /* Ancho de la tarjeta en móvil */
+        }
+
+        @media (min-width: 768px) {
+            .testimonial-card {
+                flex: 0 0 45%; /* Ancho de la tarjeta en tablet */
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .testimonial-card {
+                flex: 0 0 30%; /* Ancho de la tarjeta en desktop */
+            }
+        }
+
+        /* Estilo para el botón de WhatsApp animado */
+        .whatsapp-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo-img {
+            height: 70px;
+            border-radius: 6px;
+            object-fit: cover;
+        }
+        
+        @keyframes pulse-slow {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+        .animate-pulse-slow {
+            animation: pulse-slow 4s infinite ease-in-out;
+        }

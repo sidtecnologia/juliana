@@ -3,99 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transforma tus Finanzas Online | Mentoría</title>
+    <title>Transforma tus Finanzas Online | Juliana Castro</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Poppins Font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <style>
-        /* Configuración de Tailwind y fuente Poppins */
-        :root {
-            --primary-color: #4f46e5; /* Indigo-600 */
-            --accent-color: #10b981; /* Emerald-500 */
-            --dark-bg: #111827; /* Gray-900 */
-            --light-text: #f9fafb; /* Gray-50 */
-        }
-        
-        body {
-            /* Dejamos un margen para el navbar fijo, pero lo restamos del padding total de las secciones */
-            margin-top: 0;
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--light-text);
-        }
-
-        /* Estilo para el Navbar fijo */
-        .navbar-sticky {
-            z-index: 1000;
-        }
-
-        /* Estilo para la sección de videos verticales */
-        .vertical-videos {
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch; /* Habilitar scroll suave en iOS */
-        }
-
-        .video-card {
-            scroll-snap-align: center;
-            flex: 0 0 90%; /* Ancho de la tarjeta en móvil */
-        }
-
-        @media (min-width: 640px) {
-            .video-card {
-                flex: 0 0 30%; /* Ancho de la tarjeta en escritorio/tablet */
-            }
-        }
-
-        /* Estilo para el carrusel de testimonios */
-        .testimonial-carousel {
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-        }
-        
-        .testimonial-card {
-            scroll-snap-align: center;
-            flex: 0 0 90%; /* Ancho de la tarjeta en móvil */
-        }
-
-        @media (min-width: 768px) {
-            .testimonial-card {
-                flex: 0 0 45%; /* Ancho de la tarjeta en tablet */
-            }
-        }
-        
-        @media (min-width: 1024px) {
-            .testimonial-card {
-                flex: 0 0 30%; /* Ancho de la tarjeta en desktop */
-            }
-        }
-
-        /* Estilo para el botón de WhatsApp animado */
-        .whatsapp-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
-        }
-        
-        .logo-img {
-            height: 70px;
-            border-radius: 6px;
-            object-fit: cover;
-        }
-        
-        @keyframes pulse-slow {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
-        }
-        .animate-pulse-slow {
-            animation: pulse-slow 4s infinite ease-in-out;
-        }
-
-    </style>
+    
 </head>
 <body>
 
@@ -106,7 +22,7 @@
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
                     <!-- Placeholder de imagen: Reemplazado 'assets/img/jc.png' -->
-                    <img src="assets/img/jc.png" class="logo-img" alt="Logo JC" />
+                    <img src="assets/img/jc.png" class="logo-img" alt="Juliana Castro" />
                 </div>
                 
                 <!-- Menu de Escritorio -->
@@ -138,13 +54,11 @@
         </div>
     </nav>
     
-    <!-- Retiramos el pt-16 del main para que el navbar cubra menos espacio -->
+    <
     <main>
-        <!-- HERO SECTION - Video Background -->
-        <!-- FIX: Reemplazo 'h-screen' por 'min-h-[80vh]' y 'py-16' para asegurar que todo el contenido sea visible en móvil.
-             También ajusto el tamaño del texto para pantallas pequeñas. -->
+        
         <section class="relative min-h-[80vh] py-16 sm:py-24 flex items-center justify-center overflow-hidden bg-gray-900">
-            <!-- Video Background - Placeholder, reemplaza 'your-video-url.mp4' -->
+            <!-- Video Background - Placeholder -->
             <video autoplay loop muted playsinline class="absolute z-0 w-full h-full object-cover opacity-30">
                 <source src="https://ndqzyplsiqigsynweihk.supabase.co/storage/v1/object/public/juliana/trading_intro.mp4" type="video/mp4">
                 Tu navegador no soporta la etiqueta de video.
@@ -152,21 +66,21 @@
 
             <div class="relative z-10 text-center px-4 max-w-4xl text-white">
                 <!-- FIX: Reducido 'text-4xl' a 'text-3xl' en móvil para ahorrar espacio -->
-                <h1 class="text-3xl sm:text-6xl font-extrabold mb-4 leading-tight shadow-text">
+                <h1 class="text-4xl sm:text-6xl font-extrabold mb-4 leading-tight shadow-text">
                     Aprende a Generar Ingresos Online <span class="text-indigo-400">Sin Secretos</span>
                 </h1>
 
                 <!-- Placeholder de imagen: Reemplazado 'assets/img/perfil.jpg' -->
                 <img src="assets/img/perfil.jpg" 
-                    alt="Foto de la mentora" 
+                    alt="Juliana Castro" 
                     class="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-indigo-400 shadow-xl object-cover animate-pulse-slow">
 
                 <!-- FIX: Reducido 'text-lg' a 'text-base' en móvil para ahorrar espacio -->
                 <p class="text-base sm:text-xl font-light mb-8 opacity-90">
                     ¡Hola! Soy Juliana Castro, tu amiga y mentora, estoy aquí para mostrarte el camino comprobado hacia la libertad financiera a través de modelos de negocio digitales.
                 </p>
-                <a href="#contacto" class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full shadow-2xl text-white bg-indigo-600 hover:bg-indigo-700 transition duration-300 transform hover:scale-105 whatsapp-btn">
-                    <i class="fab fa-whatsapp mr-2 text-xl"></i>
+                <a href="#videos" class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full shadow-2xl text-white bg-indigo-600 hover:bg-indigo-700 transition duration-300 transform hover:scale-105 whatsapp-btn">
+                    <i class="fa fa-book mr-2 text-xl"></i>
                     Quiero Aprender
                 </a>
             </div>
@@ -176,7 +90,10 @@
         <section id="proposito" class="py-16 sm:py-24 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                 <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-4">
-                    Mi Propósito: <span class="text-indigo-600">Te Enseño y Tu Eliges</span>
+                    <p>
+                    Mi Propósito
+                </p>
+                <p><span class="text-indigo-600">Te Enseño y Tu Eliges</span></p>
                 </h2>
                 <p class="text-xl text-gray-600 mb-12 max-w-3xl mx-auto">
                     No te vendo un sueño, te enseño un proceso. Mi misión es equiparte con las habilidades prácticas y la mentalidad correcta para que seas tú quien construya su propia fuente de ingresos.
@@ -239,7 +156,7 @@
                     Lo Comparto <span class="text-accent-color">Contigo</span>
                 </h2>
                 <p class="text-lg text-gray-300 mb-8">
-                    Desliza para ver mis experiencias y estrategias.
+                    Mira algunas de mis experiencias y estrategias.
                 </p>
 
                 <!-- Contenedor de Videos con Scroll Horizontal y Touch -->
@@ -248,7 +165,7 @@
                     <!-- Video 1 -->
                     <div class="video-card flex-shrink-0 bg-gray-700 rounded-lg overflow-hidden shadow-lg h-96 w-72 mx-auto">
                         <video controls class="w-full h-full object-cover">
-                            <!-- Placeholder de video vertical. Usa videos reales de tu amiga. -->
+                            <!-- Placeholder de video vertica -->
                             <source src="https://ndqzyplsiqigsynweihk.supabase.co/storage/v1/object/public/juliana/juliana1.mp4" type="video/mp4">
                             Video 1
                         </video>
@@ -279,7 +196,7 @@
         <section id="historias" class="py-16 sm:py-24 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-10 text-center">
-                    Historias de Éxito de Alumnos
+                    Historias de Éxito
                 </h2>
                 
                 <!-- Carrusel de Testimonios con Scroll Horizontal y Touch -->
@@ -287,7 +204,7 @@
                     
                     <!-- Testimonio 1 -->
                     <div class="testimonial-card flex-shrink-0 bg-white p-6 rounded-xl shadow-2xl border-l-4 border-accent-color">
-                        <p class="text-gray-700 italic mb-4">"Gracias a la mentoría, pude dejar mi trabajo de 9 a 5 y enfocarme en mi negocio de Dropshipping. La claridad de las estrategias no tiene precio."</p>
+                        <p class="text-gray-700 italic mb-4">"Gracias a Juli pude dejar mi trabajo y enfocarme en mi negocio de Dropshipping. La claridad de las estrategias no tiene precio."</p>
                         <div class="flex items-center">
                             <img src="https://placehold.co/40x40/4f46e5/ffffff?text=JN" alt="Testimonio de Juan N." class="w-10 h-10 rounded-full mr-3">
                             <div>
@@ -299,7 +216,7 @@
 
                     <!-- Testimonio 2 -->
                     <div class="testimonial-card flex-shrink-0 bg-white p-6 rounded-xl shadow-2xl border-l-4 border-accent-color">
-                        <p class="text-gray-700 italic mb-4">"Antes no entendía nada de Trading, ahora tengo un plan de riesgo sólido y estoy viendo ganancias consistentes. ¡El apoyo fue clave!"</p>
+                        <p class="text-gray-700 italic mb-4">"Antes no entendía nada de Trading, ahora tengo un plan de riesgo sólido y estoy viendo ganancias consistentes, lo que ha servido de ingreso adicional a mi trabajo. ¡El apoyo fue clave!"</p>
                         <div class="flex items-center">
                             <img src="https://placehold.co/40x40/4f46e5/ffffff?text=MR" alt="Testimonio de María R." class="w-10 h-10 rounded-full mr-3">
                             <div>
@@ -311,7 +228,7 @@
                     
                     <!-- Testimonio 3 -->
                     <div class="testimonial-card flex-shrink-0 bg-white p-6 rounded-xl shadow-2xl border-l-4 border-accent-color">
-                        <p class="text-gray-700 italic mb-4">"Mi red de Network Marketing creció exponencialmente con las técnicas que me enseñaste. Es mucho más que solo 'vender'."</p>
+                        <p class="text-gray-700 italic mb-4">"Aprendí diferentes herramientas con las técnicas que me enseñaste. Es mucho más que solo 'vender'."</p>
                         <div class="flex items-center">
                             <img src="https://placehold.co/40x40/4f46e5/ffffff?text=CP" alt="Testimonio de Carlos P." class="w-10 h-10 rounded-full mr-3">
                             <div>
@@ -342,7 +259,7 @@
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="bg-white p-8 sm:p-12 rounded-2xl shadow-2xl text-center">
                     <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-4">
-                        ¿Lista(o) Para Empezar?
+                        ¿Lista(o) Para Aprender?
                     </h2>
                     <p class="text-lg text-gray-600 mb-8">
                         Déjame tus datos por WhatsApp y hablemos sobre tu objetivo y cómo podemos lograrlo.
@@ -354,9 +271,9 @@
                             <input type="text" id="name" name="name" placeholder="Tu Nombre" required class="w-full px-5 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-150">
                         </div>
                         <div>
-                            <input type="email" id="email" name="email" placeholder="Tu Correo Electrónico" required class="w-full px-5 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-150">
+                            <input type="text" id="description" name="description" placeholder="¿Que quieres aprender?" required class="w-full px-5 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-150">
                         </div>
-                        <button type="submit" class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-semibold rounded-full shadow-lg text-white bg-accent-color hover:bg-emerald-600 transition duration-300 transform hover:scale-[1.02] whatsapp-btn">
+                        <button type="submit" class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full shadow-2xl text-white bg-emerald-600 hover:bg-emerald-700 transition duration-300 transform hover:scale-105 whatsapp-btn">
                             <i class="fab fa-whatsapp mr-3 text-xl"></i>
                             Aprender Ya
                         </button>
@@ -367,7 +284,7 @@
                     
                     <div class="mt-12">
                         <h3 class="text-xl font-semibold mb-6 text-gray-800">
-                            También puedes seguirme en mis redes:
+                            Mis Redes
                         </h3>
                         <div class="flex justify-center space-x-6">
                             <!-- WhatsApp Button (Icono de Botón) -->
@@ -397,72 +314,8 @@
         </footer>
 
     </main>
+    <script src="assets/js/script.js"></script>
 
-    <!-- JavaScript para interactividad -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const menuButton = document.getElementById('menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const navLinks = document.querySelectorAll('#mobile-menu a');
-            const whatsappForm = document.getElementById('whatsapp-form');
-            const formMessage = document.getElementById('form-message');
-
-            // 1. Toggle del menú hamburguer
-            menuButton.addEventListener('click', () => {
-                const isExpanded = menuButton.getAttribute('aria-expanded') === 'true' || false;
-                menuButton.setAttribute('aria-expanded', !isExpanded);
-                mobileMenu.classList.toggle('hidden');
-            });
-            
-            // 1.1 Cerrar menú móvil al hacer click en un enlace
-            navLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.add('hidden');
-                    menuButton.setAttribute('aria-expanded', 'false');
-                });
-            });
-
-            // 2. Lógica del Formulario a WhatsApp
-            whatsappForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-
-                const name = document.getElementById('name').value;
-                const email = document.getElementById('email').value;
-
-                // Teléfono de contacto (USAMOS EL MISMO NÚMERO DEL BOTÓN DE WHATSAPP)
-                const phoneNumber = '573052492882'; 
-                
-                // Mensaje pre-rellenado
-                const message = encodeURIComponent(`¡Hola! Soy ${name} (${email}) y estoy interesada(o) en tu mentoría para generar ingresos online (Dropshipping, Trading, Networking). ¿Podemos hablar?`);
-                
-                // URL de WhatsApp
-                const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
-
-                // Mostrar mensaje de éxito (simulado en el div) y redirigir
-                formMessage.classList.remove('hidden', 'bg-red-100', 'text-red-700');
-                formMessage.classList.add('bg-green-100', 'text-green-700');
-                formMessage.innerHTML = '¡Excelente! Redirigiendo a WhatsApp...';
-                
-                // Abrir WhatsApp en una nueva pestaña después de un breve retraso
-                setTimeout(() => {
-                    window.open(whatsappUrl, '_blank');
-                    // Opcional: Limpiar el formulario después del envío
-                    whatsappForm.reset(); 
-                    formMessage.classList.add('hidden');
-                }, 1000); 
-            });
-
-            // 3. Scroll Suave para anclas
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                });
-            });
-        });
-    </script>
+    
 </body>
 </html>
